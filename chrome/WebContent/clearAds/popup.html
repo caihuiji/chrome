@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+<head>
+<style type="text/css">
+#operate-list {
+	width: 200px;
+}
+
+#operate-list .separator {
+	height: 0px;
+	margin: 3px 2px;
+	border: 0;
+	border-top: 1px solid #DDD;
+}
+
+#operate-list .operator {
+	padding: 0 20px 0 30px;
+	margin:2px 0 2px 0 ;
+}
+
+#operate-list .checked {
+	background:url(checked.png) transparent no-repeat 2px 2px ;
+}
+</style>
+</head>
+<body>
+	<div id="operate-list">
+		<ul>
+			<li><span class="operator checked">自动清除</span></li>
+			<li><span class="separator"></span></li>
+			<li><span class="operator">清除</span></li>
+			<li><span class="operator">关闭</span></li>
+		</ul>
+	</div>
+	<script type="text/javascript" src="jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="popup.js"></script>
+</body>
+</html>
+

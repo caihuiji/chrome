@@ -1,0 +1,18 @@
+{
+  "manifest_version": 2,
+
+  "name": "clear advertisement",
+  "description": "kill the advertisement which you want to fuck them!!",
+  "version": "1.0",
+  "browser_action": {
+    "default_icon": "icon.png"
+  },
+  "permissions": [
+    "tabs","http://*/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["http://*/*"],
+      "js": ["jquery.js","popup.js","main.js"]
+    }]
+}
