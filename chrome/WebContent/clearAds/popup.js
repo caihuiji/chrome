@@ -110,5 +110,4 @@
 	
 })(window);
 
-console.log(111);
 	
