@@ -92,7 +92,7 @@
 	
 	// need set a global flag to decide it had initialized  because property of all_frames is true 
 	
-	win["chj_clear_ads_flag"] ||  (win["chj_clear_ads_flag"] = true);
+	/*win["chj_clear_ads_flag"] ||  (win["chj_clear_ads_flag"] = true);
 	win["chj_check_clear_ads_flag"] ||  (win["chj_check_clear_ads_flag"] = true);
 	
 	// one page one attach events
@@ -106,7 +106,7 @@
 		});
 	}
 	
-	win["chj_check_clear_ads_flag"] && clearAds();
+	win["chj_check_clear_ads_flag"] &&*/ clearAds();
 	
 })(window);
 
