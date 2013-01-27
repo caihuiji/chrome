@@ -15,3 +15,5 @@ document.addEventListener('DOMContentLoaded', function () {
     divs[i].addEventListener('click', click);
   }
 });
+
+console.log(11);

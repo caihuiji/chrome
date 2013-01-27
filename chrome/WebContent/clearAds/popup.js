@@ -1,5 +1,6 @@
 (function (win){
 	
+	
 	function clearAds (){
 	
 		/**
@@ -89,7 +90,25 @@
 	
 	};
 	
-	clearAds();
+	// need set a global flag to decide it had initialized  because property of all_frames is true 
+	
+	win["chj_clear_ads_flag"] ||  (win["chj_clear_ads_flag"] = true);
+	win["chj_check_clear_ads_flag"] ||  (win["chj_check_clear_ads_flag"] = true);
+	
+	// one page one attach events
+	if(win["chj_clear_ads_flag"]){
+		var checked = "icon.png";
+		var unchecked = "unchecked.png";
+		chrome.browserAction.onClicked.addListener(function (){
+			win["chj_check_clear_ads_flag"] ? 
+					(win["chj_check_clear_ads_flag"] = false || chrome.browserAction.setIcon({path:unchecked}))  // close
+					: (win["chj_check_clear_ads_flag"] = true || chrome.browserAction.setIcon({path:checked})); // start
+		});
+	}
+	
+	win["chj_check_clear_ads_flag"] && clearAds();
 	
 })(window);
+
+console.log(111);
 	
