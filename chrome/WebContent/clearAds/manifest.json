@@ -3,7 +3,7 @@
 
   "name": "clear advertisement",
   "description": "kill the advertisement which you want to fuck them!!",
-  "version": "1.0",
+  "version": "0.2",
   "browser_action": {
     "default_icon": "icon.png"
   },
@@ -12,7 +12,9 @@
   ],
   "content_scripts": [
     {
+     "all_frames": true,
+     "run_at": "document_idle",
       "matches": ["http://*/*"],
-      "js": ["jquery.js","popup.js","main.js"]
+      "js": ["popup.js"]
     }]
 }
