@@ -33,7 +33,7 @@
 					var ads = [];
 					
 					
-					var rule = ["drmcmm.baidu.com","cpro.baidu.com","z.alimama.com"];
+					var rule = ["drmcmm.baidu.com","cpro.baidu.com","z.alimama.com","static.googleadsserving.cn"];
 					// 百度广告
 					
 					for(var index in rule ){
@@ -67,20 +67,21 @@
 						this.remove(ads[i]);
 					}
 					
-					return ads.length;
+					return ads;
 				},
 				/**
 				 * start a runner to clear ads once each 3s 
 				 */
 				start: function (){
-					console.log("start ..." + " ID :"+document.location.href );
+					console.log("start ... ID :"+document.location.href );
 					var _seft = this;
 					var timeOut = 3000;
 					var times = 0;
 					setTimeout (function (){
-						console.log(" removed:  " + _seft.clear() + " ID :"+document.location.href );
-						 times++ <= 5 ?  setTimeout(arguments.callee,timeOut) : console.log("stop ...");
-					},timeOut);
+						var ads  =  _seft.clear();
+						console.log(" removed:  " + ads.length + " in ID :"+document.location.href );
+						times++ <= 5 ?  setTimeout(arguments.callee,timeOut) : console.log("stop ... ID :" +document.location.href);
+					},0);
 				}
 		};
 	
