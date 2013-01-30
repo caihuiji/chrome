@@ -7,6 +7,7 @@
 		 * 脚本
 		 */
 		var innerScript = {
+				_id : null,
 				_host : null,
 				/**
 				 * 构造方法
@@ -49,7 +50,8 @@
 					// 外部flash 
 					var flash = document.querySelectorAll('body embed[src]');
 					for(var i = 0; i<flash.length ;i++ ){
-						this.isAdsDomain(flash[i].src) && (flash[i].src.indexOf(baidu1) == -1) && ads.push(flash[i]);
+						this.isAdsDomain(flash[i].src) && (flash[i].src.indexOf(rule[0]) == -1) && ads.push(flash[i]);
+						this.isAdsDomain(flash[i].src) && (flash[i].src.indexOf(rule[1]) == -1) && ads.push(flash[i]);
 					}
 					
 					return ads;
@@ -74,15 +76,18 @@
 				 * start a runner to clear ads once each 3s 
 				 */
 				start: function (){
-					console.log("start ... ID :"+document.location.href );
 					var _seft = this;
+					_seft._id = document.location.href;
+					
 					var timeOut = 3000;
 					var times = 0;
+					
+					console.log("start ... ID :"+_seft._id );
 					setTimeout (function (){
 						var ads  =  _seft.clear();
-						console.log(" removed:  " + ads.length + " in ID :"+document.location.href );
-						times++ <= 5 ?  setTimeout(arguments.callee,timeOut) : console.log("stop ... ID :" +document.location.href);
-					},0);
+						console.log(" removed:  " + ads.length + " in ID :"+_seft._id );
+						times++ <= 5 ?  setTimeout(arguments.callee,timeOut) : console.log("stop ... ID :" +_seft._id);
+					}, 100);
 				}
 		};
 	
@@ -90,23 +95,7 @@
 	
 	};
 	
-	// need set a global flag to decide it had initialized  because property of all_frames is true 
-	
-	/*win["chj_clear_ads_flag"] ||  (win["chj_clear_ads_flag"] = true);
-	win["chj_check_clear_ads_flag"] ||  (win["chj_check_clear_ads_flag"] = true);
-	
-	// one page one attach events
-	if(win["chj_clear_ads_flag"]){
-		var checked = "icon.png";
-		var unchecked = "unchecked.png";
-		chrome.browserAction.onClicked.addListener(function (){
-			win["chj_check_clear_ads_flag"] ? 
-					(win["chj_check_clear_ads_flag"] = false || chrome.browserAction.setIcon({path:unchecked}))  // close
-					: (win["chj_check_clear_ads_flag"] = true || chrome.browserAction.setIcon({path:checked})); // start
-		});
-	}
-	
-	win["chj_check_clear_ads_flag"] &&*/ clearAds();
+	clearAds();
 	
 })(window);
 
