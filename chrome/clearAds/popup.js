@@ -13,9 +13,7 @@
 				 * 构造方法
 				 */
 				init: function (){
-					var host = location.hostname.split(".");
-					this._host = host.length > 1 ? host[host.length-2] : ''; // before .cn or .com and so on  is host 
-					
+					this._host = document.location.host;
 					return this;
 				},
 				/**
@@ -35,12 +33,19 @@
 					var ads = [];
 					
 					
-					var rule = ["drmcmm.baidu.com","cpro.baidu.com","z.alimama.com","static.googleadsserving.cn"];
-					// 百度广告
+
+				var rule = [ "drmcmm.baidu.com", "cpro.baidu.com",
+						"z.alimama.com", "static.googleadsserving.cn",
+						"m.kejet.net","googleads.g.doubleclick.net","pagead2.googlesyndication.com" ];
 					
 					for(var index in rule ){
+						// itself is ads,so push it into list which need to remove  and do not query content  
+						if (document.location.host == rule[index] && ads.push(document.body) ){
+							continue;
+						}
 						ads = ads.concat(slice.apply(document.querySelectorAll('body img[src*="'+rule[index]+'"]')))
 						 .concat(slice.apply(document.querySelectorAll('body embed[src*="'+rule[index]+'"]')))
+						 .concat(slice.apply(document.querySelectorAll('body object[data*="'+rule[index]+'"]')))
 						 .concat(slice.apply(document.querySelectorAll('body a[href*="'+rule[index]+'"]')))
 						 .concat(slice.apply(document.querySelectorAll('body iframe[src*="'+rule[index]+'"]')));
 					};
@@ -57,7 +62,8 @@
 					return ads;
 				},
 				remove :function (node){
-						node.parentNode.removeChild(node);
+					// the content had not finished but had detected it is ads ,after it completed then remove it 
+					node && node.parentNode &&  node.parentNode.removeChild(node);
 				},
 				/**
 				 * 清除
